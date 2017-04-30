@@ -195,7 +195,7 @@
       "type": "improve",
       "children": [
         {
-          "name": "Selectors CSS - VERIFY",
+          "name": "CSS Selectors",
           "type": "improve"
         },
         {
@@ -231,7 +231,7 @@
           "type": "",
           "children": [
             {
-              "name": "Media Queries - VERIFY",
+              "name": "Media Queries",
               "type": "improve"
             },
             {
