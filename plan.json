@@ -2,27 +2,261 @@
   "name": "Front-End",
   "type": "",
   "children": [
+     {
+      "name": "JavaScript",
+      "type": "improve",
+      "children": [
+        {
+          "name": "NodeJS",
+          "type": "future"
+        },
+        {
+          "name": "ES6",
+          "type": "to-know"
+        },
+        {
+          "name": "Regex",
+          "type": "to-know"
+        },
+        {
+          "name": "Task Runners",
+          "type": "",
+          "children": [
+            {
+              "name": "NPM Scripts",
+              "type": "improve"
+            },
+            {
+              "name": "Gulp",
+              "type": "improve"
+            }
+          ]
+        },
+        {
+          "name": "Design Patterns",
+          "type": "improve"
+        },
+        {
+          "name": "Package Manager",
+          "type": "",
+          "children": [
+            {
+              "name": "YARN",
+              "type": "future"
+            },
+            {
+              "name": "Bower",
+              "type": "improve"
+            },
+            {
+              "name": "NPM",
+              "type": "improve"
+            }
+          ]
+        },
+        {
+          "name": "Module Loader / Bundler",
+          "type": "",
+          "children": [
+            {
+              "name": "Webpack",
+              "type": "future"
+            },
+            {
+              "name": "RequireJS",
+              "type": "future"
+            },
+            {
+              "name": "Browserify",
+              "type": "future"
+            }
+          ]
+        },
+        {
+          "name": "Testing",
+          "type": "",
+          "children": [
+            {
+              "name": "Jasmine",
+              "type": "improve"
+            },
+            {
+              "name": "Mocha",
+              "type": "future"
+            },
+            {
+              "name": "Jest",
+              "type": "future"
+            }
+          ]
+        },
+        {
+          "name": "TypeScript",
+          "type": "future"
+        },
+        {
+          "name": "Frameworks",
+          "type": "",
+          "children": [
+            {
+              "name": "AngularJS",
+              "type": "future"
+            },
+            {
+              "name": "React",
+              "type": "to-know",
+              "children": [
+                {
+                  "name": "Flux",
+                  "type": "future"
+                },
+                {
+                  "name": "Redux",
+                  "type": "future"
+                }
+              ]
+            },
+            {
+              "name": "VueJS",
+              "type": "to-know"
+            }
+          ]
+        }
+      ]
+    },
     {
       "name": "SVG",
       "type": "improve",
       "children": [
         {
-          "name": "d3.js",
+          "name": "D3.js",
           "type": "future"
         }
       ]
     },
     {
-      "name": "php 7",
+      "name": "PHP 7",
       "type": "to-know",
       "children": [
         {
-          "name": "magento",
+          "name": "Magento",
           "type": "to-know"
         },
         {
-          "name": "wordpress",
+          "name": "Wordpress",
           "type": "to-know"
+        }
+      ]
+    },
+    {
+      "name": "SEO",
+      "type": "to-know",
+      "children": [
+        {
+          "name": "Basic Principles",
+          "type": "to-know"
+        }
+      ]
+    },
+    {
+      "name": "UX",
+      "type": "improve",
+      "children": [
+        {
+          "name": "\"Don't Make Me Think\" Principles",
+          "type": "improve"
+        },
+        {
+          "name": "Accessibility",
+          "type": "improve",
+          "children": [
+            {
+              "name": "\"Web For Everyone\" Principles",
+              "type": "improve"
+            },
+            {
+              "name": "Other Related Techniques",
+              "type": "improve"
+            },
+            {
+              "name": "WCAG 2.0",
+              "type": "to-know"
+            },
+            {
+              "name": "WAI-ARIA 1.0",
+              "type": "to-know"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CSS",
+      "type": "improve",
+      "children": [
+        {
+          "name": "Selectors CSS - VERIFY",
+          "type": "improve"
+        },
+        {
+          "name": "Frameworks",
+          "type": "",
+          "children": [
+            {
+              "name": "Bootstrap 4.0",
+              "type": "to-know"
+            },
+            {
+              "name": "Materialize CSS",
+              "type": "to-know"
+            },
+            {
+              "name": "Semantic UI",
+              "type": "to-know"
+            }
+          ]
+        },
+        {
+          "name": "Processors",
+          "type": "",
+          "children": [
+            {
+              "name": "SASS",
+              "type": "improve"
+            }
+          ]
+        },
+        {
+          "name": "Responsive Web",
+          "type": "",
+          "children": [
+            {
+              "name": "Media Queries - VERIFY",
+              "type": "improve"
+            },
+            {
+              "name": "Responsive Images",
+              "type": "improve"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Methodologies",
+      "type": "",
+      "children": [
+        {
+          "name": "BEM",
+          "type": "to-know"
+        },
+        {
+          "name": "OOCSS",
+          "type": "future"
+        },
+        {
+          "name": "SMACSS",
+          "type": "future"
         }
       ]
     }
