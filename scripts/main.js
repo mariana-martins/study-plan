@@ -6,8 +6,7 @@ function MindMap() {
 
         root = d3.hierarchy(data);
         root.descendants().forEach(function (element) {
-            // TODO: REMOVER LINHA ABAIXO E USAR BOOLEANO AO INVES DE STRING
-            element.data.closed = "true" == element.data.closed;
+            element.data.closed = true == element.data.closed;
 
             if (element.data.closed) {
                 toggleNode(element);
@@ -73,8 +72,6 @@ function MindMap() {
             }
         }
 
-        var lightnessRange = d3.scaleLinear().domain([0, 180, 360]).range([1, .3, 1]);
-
         var radiusRange = d3.scaleLinear().domain([0, 1, 5, 10]).range([13, 13, 6.5, 6.5]);
 
         var nodeIds = gnode.selectAll(".node").data(descendants, function (node) {
@@ -88,7 +85,7 @@ function MindMap() {
 
         var nodes = idsEnter.append("g").attr("class", "node")
             .attr("transform", function () {
-                return "translate(" + positions[0] + "," + positions[1] + ")"
+                return "translate(" + positions[0] + "," + positions[1] + ")";
             }).on("mousedown", function (clickedNode) {
                 if (!d3.event.defaultPrevented) {
                     toggleNode(clickedNode);
@@ -98,12 +95,16 @@ function MindMap() {
 
         nodes.append("circle").attr("r", 0)
             .style("fill", function (node) {
-                var e = "";
-                return node.depth > 1
-                    ? (e = d3.hsl(node.parent.color), e = e.brighter(.5), e.l = lightnessRange(node.x))
-                    : e = node.depth > 0
-                        ? d3.hsl(node.x, 1, .5)
-                        : "#FFFFFF", node.color = e + "", node.color + "";
+                switch (node.data.type){
+                    case "improve":
+                        return "yellow";
+                    case "to-know":
+                        return "pink";
+                    case "future":
+                        return "green";
+                    default:
+                        return "white";
+                }
             })
             .style("stroke-width", 2)
             .style("stroke", "black")
