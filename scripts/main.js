@@ -93,7 +93,10 @@ function MindMap() {
                 }
             });
 
-        nodes.append("circle").attr("r", 0)
+        nodes.append("rect")
+            // .attr("r", 0)
+            .attr("width", 0)
+            .attr("height", 0)
             .style("fill", function (node) {
                 switch (node.data.type){
                     case "improve":
@@ -125,8 +128,34 @@ function MindMap() {
 
         var radiusValue = 30;
 
-        animationEnter.select("circle")
-            .attr("r", radiusValue)
+        var getTextWidth = function(txt){
+            // Create dummy span
+            this.e = document.createElement('span');
+            // Set font-size
+            // this.e.style.fontSize = fontsize;
+            // Set font-face / font-family
+            // this.e.style.fontFamily = fontname;
+            // Set text
+            this.e.innerHTML = txt;
+            document.body.appendChild(this.e);
+            // Get width NOW, since the dummy span is about to be removed from the document
+            var w = this.e.offsetWidth;
+            // Cleanup
+            document.body.removeChild(this.e);
+            // All right, we're done
+            return w;
+        }
+
+        animationEnter.select("rect")
+            // .attr("r", radiusValue)
+            .attr("width", function(node) {
+                return getTextWidth(node.data.name) + 10;
+            })
+            .attr("height", radiusValue)
+            .attr("x", function(node) {
+                return - (getTextWidth(node.data.name) + 10) / 2;
+            })
+            .attr("y", -radiusValue/2)
             .style("opacity", 1);
         animationEnter.select("text")
             .style("fill-opacity", 1);
