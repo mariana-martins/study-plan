@@ -1,4 +1,18 @@
 function MindMap() {
+    function getTextWidth(txt){
+        // Create dummy span
+        this.e = document.createElement('span');
+        // Set text
+        this.e.innerHTML = txt;
+        document.body.appendChild(this.e);
+        // Get width NOW, since the dummy span is about to be removed from the document
+        var w = this.e.offsetWidth;
+        // Cleanup
+        document.body.removeChild(this.e);
+        // All right, we're done
+        return w + 10; // + 10, ensure minimun size
+    }
+
     function init() {
         graph = d3.tree()
             .size([360, 120])
@@ -75,7 +89,6 @@ function MindMap() {
         }
 
         var nodeIds = gnode.selectAll(".node").data(descendants, function (node) {
-            console.log(node);
             return node.id;
         });
 
@@ -99,18 +112,26 @@ function MindMap() {
             .attr("height", 0)
             .style("fill", function (node) {
                 switch (node.data.type){
-                    case "improve":
-                        return "yellow";
                     case "to-know":
-                        return "pink";
+                        return "#e79494";
                     case "future":
-                        return "green";
+                        return "#94e7e7";
+                    case "improve":
                     default:
                         return "white";
                 }
             })
-            .style("stroke-width", 2)
-            .style("stroke", "black")
+            .style("stroke-width", function(node) {
+                switch (node.data.type){
+                    case "improve":
+                    case "to-know":
+                    case "future":
+                        return "rgba(20,20,20,0.2)";
+                    default:
+                        return 0;
+                }
+            })
+            .style("stroke", "grey")
             .style("opacity", 0);
 
         nodes.append("text")
@@ -128,32 +149,14 @@ function MindMap() {
 
         var radiusValue = 30;
 
-        var getTextWidth = function(txt){
-            // Create dummy span
-            this.e = document.createElement('span');
-            // Set font-size
-            // this.e.style.fontSize = fontsize;
-            // Set font-face / font-family
-            // this.e.style.fontFamily = fontname;
-            // Set text
-            this.e.innerHTML = txt;
-            document.body.appendChild(this.e);
-            // Get width NOW, since the dummy span is about to be removed from the document
-            var w = this.e.offsetWidth;
-            // Cleanup
-            document.body.removeChild(this.e);
-            // All right, we're done
-            return w;
-        }
-
         animationEnter.select("rect")
             // .attr("r", radiusValue)
             .attr("width", function(node) {
-                return getTextWidth(node.data.name) + 10;
+                return getTextWidth(node.data.name);
             })
             .attr("height", radiusValue)
             .attr("x", function(node) {
-                return - (getTextWidth(node.data.name) + 10) / 2;
+                return - getTextWidth(node.data.name) / 2;
             })
             .attr("y", -radiusValue/2)
             .style("opacity", 1);
