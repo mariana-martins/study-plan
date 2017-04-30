@@ -1,8 +1,10 @@
 function MindMap() {
     function init() {
-        graph = d3.tree().size([360, 120]).separation(function (a, b) {
-            return (a.parent == b.parent ? 1 : 2) / a.depth;
-        });
+        graph = d3.tree()
+            .size([360, 120])
+            .separation(function (a, b) {
+                return (a.parent == b.parent ? 1 : 2) / a.depth;
+            });
 
         root = d3.hierarchy(data);
         root.descendants().forEach(function (element) {
@@ -72,8 +74,6 @@ function MindMap() {
             }
         }
 
-        var radiusRange = d3.scaleLinear().domain([0, 1, 5, 10]).range([13, 13, 6.5, 6.5]);
-
         var nodeIds = gnode.selectAll(".node").data(descendants, function (node) {
             console.log(node);
             return node.id;
@@ -111,10 +111,9 @@ function MindMap() {
             .style("opacity", 0);
 
         nodes.append("text")
-            .attr("dominant-baseline", "text-before-edge")
+            .attr("dominant-baseline", "middle")
             .attr("text-anchor", "middle")
-            .attr("font-size", 12)
-            .attr("dy", 13)
+            .attr("font-size", 15)
             .text(function (node) {
                 return node.data.name;
             })
@@ -123,13 +122,13 @@ function MindMap() {
         var animationEnter = nodes.merge(nodeIds).transition().duration(600).attr("transform", function (node) {
             return "translate(" + node.pos[0] + "," + node.pos[1] + ")"
         });
-        animationEnter.select("circle").attr("r", function (node) {
-            return radiusRange(node.depth)
-        }).style("opacity", 1);
+
+        var radiusValue = 30;
+
+        animationEnter.select("circle")
+            .attr("r", radiusValue)
+            .style("opacity", 1);
         animationEnter.select("text")
-            .attr("dy", function (node) {
-                return radiusRange(node.depth)
-            })
             .style("fill-opacity", 1);
 
         var animationExit = idsExit.transition().duration(600).attr("transform", function (node) {
@@ -243,8 +242,8 @@ function MindMap() {
 
 !function () {
     var mindmapElement = d3.select("#mindmap-svg"),
-        width = mindmapElement.attr("width"),
-        height = mindmapElement.attr("height"),
+        width = window.innerWidth, //mindmapElement.attr("width"),
+        height = window.innerHeight, //mindmapElement.attr("height"),
         mindmap = new MindMap();
 
     mindmap.svg(mindmapElement);

@@ -2,22 +2,20 @@
   "name": "Front-End",
   "type": "",
   "children": [
-     {
-      "name": "JavaScript",
+    {
+      "name": "SVG",
       "type": "improve",
       "children": [
         {
-          "name": "NodeJS",
+          "name": "D3.js",
           "type": "future"
-        },
-        {
-          "name": "ES6",
-          "type": "to-know"
-        },
-        {
-          "name": "Regex",
-          "type": "to-know"
-        },
+        }
+      ]
+    },
+    {
+      "name": "JavaScript",
+      "type": "improve",
+      "children": [
         {
           "name": "Task Runners",
           "type": "",
@@ -33,8 +31,8 @@
           ]
         },
         {
-          "name": "Design Patterns",
-          "type": "improve"
+          "name": "NodeJS",
+          "type": "future"
         },
         {
           "name": "Package Manager",
@@ -55,6 +53,10 @@
           ]
         },
         {
+          "name": "ES6",
+          "type": "to-know"
+        },
+        {
           "name": "Module Loader / Bundler",
           "type": "",
           "children": [
@@ -73,26 +75,8 @@
           ]
         },
         {
-          "name": "Testing",
-          "type": "",
-          "children": [
-            {
-              "name": "Jasmine",
-              "type": "improve"
-            },
-            {
-              "name": "Mocha",
-              "type": "future"
-            },
-            {
-              "name": "Jest",
-              "type": "future"
-            }
-          ]
-        },
-        {
-          "name": "TypeScript",
-          "type": "future"
+          "name": "Regex",
+          "type": "to-know"
         },
         {
           "name": "Frameworks",
@@ -121,16 +105,32 @@
               "type": "to-know"
             }
           ]
-        }
-      ]
-    },
-    {
-      "name": "SVG",
-      "type": "improve",
-      "children": [
+        },
         {
-          "name": "D3.js",
+          "name": "TypeScript",
           "type": "future"
+        },
+        {
+          "name": "Testing",
+          "type": "",
+          "children": [
+            {
+              "name": "Jasmine",
+              "type": "improve"
+            },
+            {
+              "name": "Mocha",
+              "type": "future"
+            },
+            {
+              "name": "Jest",
+              "type": "future"
+            }
+          ]
+        },
+        {
+          "name": "Design Patterns",
+          "type": "improve"
         }
       ]
     },
