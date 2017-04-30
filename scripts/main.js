@@ -78,6 +78,7 @@ function MindMap() {
         var radiusRange = d3.scaleLinear().domain([0, 1, 5, 10]).range([13, 13, 6.5, 6.5]);
 
         var nodeIds = gnode.selectAll(".node").data(descendants, function (node) {
+            console.log(node);
             return node.id;
         });
 
@@ -93,10 +94,6 @@ function MindMap() {
                     toggleNode(clickedNode);
                     render(clickedNode.prevPos);
                 }
-            }).on("mouseover", function () {
-                d3.select(this).style("cursor", "pointer").select("text").style("fill-opacity", 1);
-            }).on("mouseout", function () {
-                d3.select(this).select("text").transition(600).style("fill-opacity", 0);
             });
 
         nodes.append("circle").attr("r", 0)
@@ -118,8 +115,7 @@ function MindMap() {
             .attr("font-size", 12)
             .attr("dy", 13)
             .text(function (node) {
-                var rgb = d3.rgb(node.color);
-                return toRGBText(rgb.init, rgb.g, rgb.b)
+                return node.data.name;
             })
             .style("fill-opacity", 0);
 
@@ -129,9 +125,11 @@ function MindMap() {
         animationEnter.select("circle").attr("r", function (node) {
             return radiusRange(node.depth)
         }).style("opacity", 1);
-        animationEnter.select("text").attr("dy", function (node) {
-            return radiusRange(node.depth)
-        }).style("fill-opacity", 0);
+        animationEnter.select("text")
+            .attr("dy", function (node) {
+                return radiusRange(node.depth)
+            })
+            .style("fill-opacity", 1);
 
         var animationExit = idsExit.transition().duration(600).attr("transform", function (node) {
             return "translate(" + positions[0] + "," + positions[1] + ")"
@@ -210,13 +208,6 @@ function MindMap() {
         element.data.closed = !element.data.closed;
     }
 
-    function toRGBText(t, e, r) {
-        return convertToHex(t) + convertToHex(e) + convertToHex(r)
-    }
-
-    function convertToHex(text) {
-        return text = parseInt(text, 10), isNaN(text) ? "00" : (text = Math.max(0, Math.min(text, 255)), "0123456789ABCDEF".charAt((text - text % 16) / 16) + "0123456789ABCDEF".charAt(text % 16))
-    }
 
     var svg, width, height, data, descendants, links, graph, root, gmind, glink, gnode, baseDescendantId = 0,
         baseLinkId = 0;
