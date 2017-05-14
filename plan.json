@@ -163,21 +163,9 @@
       "type": "improve",
       "children": [
         {
-          "name": "\"Don't Make Me Think\" Principles",
-          "type": "improve"
-        },
-        {
           "name": "Accessibility",
           "type": "improve",
           "children": [
-            {
-              "name": "\"Web For Everyone\" Principles",
-              "type": "improve"
-            },
-            {
-              "name": "Other Related Techniques",
-              "type": "improve"
-            },
             {
               "name": "WCAG 2.0",
               "type": "to-know"
@@ -185,8 +173,20 @@
             {
               "name": "WAI-ARIA 1.0",
               "type": "to-know"
+            },
+            {
+              "name": "\"Web For Everyone\" Principles",
+              "type": "improve"
+            },
+            {
+              "name": "Other Related Techniques",
+              "type": "improve"
             }
           ]
+        },
+        {
+          "name": "\"Don't Make Me Think\"Principles",
+          "type": "improve"
         }
       ]
     },

@@ -64,13 +64,33 @@ function MindMap() {
         return [n * Math.cos(angle), n * Math.sin(angle)]
     }
 
+    function calculateTiebreakerOnDescendant(descendant) {
+         // if no parent, no tiebreaker
+        if (!descendant.parent) {
+            return 0;
+        }
+
+        var descendantPosition = 0;
+        var children = descendant.parent.children;
+
+        for (var i = 0; i < children.length; i++) {
+            if (children[i] == descendant) {
+                descendantPosition = i;
+                break;
+            }
+        }
+
+        // Adjust at least 0, at most 40px, based on the relative position of the descendent over parent children
+        return (descendantPosition / children.length) * 40;
+    }
+
     function render(positions) {
         graph(root);
         descendants = root.descendants();
         links = root.links();
-
         descendants.forEach(function (descendant) {
-            descendant.y = 120 * descendant.depth;
+            var tiebreaker = calculateTiebreakerOnDescendant(descendant);
+            descendant.y = 180 * descendant.depth + tiebreaker;
             descendant.pos = translateToRadial(descendant.x, descendant.y);
         });
 
