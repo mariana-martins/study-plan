@@ -44,8 +44,8 @@ function MindMap() {
             gnode = gmind.append("g").attr("class", "gnode");
         }
 
-        glink.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-        gnode.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        glink.attr("transform", "translate(" + width / 2 + "," + height / 2 + ") scale(.7,.7)");
+        gnode.attr("transform", "translate(" + width / 2 + "," + height / 2 + ") scale(.7,.7)");
 
         var zoom = d3.zoom().scaleExtent([.7, 2]).translateExtent([
             [-.7 * width, -.7 * height],
