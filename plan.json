@@ -135,6 +135,16 @@
       ]
     },
     {
+      "name": "Optimisation",
+      "type": "improve",
+      "children": [
+        {
+          "name": "AMP",
+          "type": "to-know"
+        }
+      ]
+    },
+    {
       "name": "PHP 7",
       "type": "to-know",
       "children": [
@@ -155,6 +165,22 @@
         {
           "name": "Basic Principles",
           "type": "to-know"
+        }
+      ]
+    },
+    {
+      "name": "VCS",
+      "type": "",
+      "children": [
+        {
+          "name": "GIT",
+          "type": "improve",
+          "children": [
+            {
+              "name": "GitHub",
+              "type": "improve"
+            }
+          ]
         }
       ]
     },
