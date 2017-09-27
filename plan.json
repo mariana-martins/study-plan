@@ -83,8 +83,8 @@
           "type": "",
           "children": [
             {
-              "name": "AngularJS",
-              "type": "future"
+              "name": "MarkoJS",
+              "type": "improve"
             },
             {
               "name": "React",
@@ -230,7 +230,7 @@
           "children": [
             {
               "name": "Bootstrap 4.0",
-              "type": "to-know"
+              "type": "improve"
             },
             {
               "name": "Materialize CSS",
