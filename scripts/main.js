@@ -254,9 +254,9 @@ function MindMap() {
         var legendRectSize = 18;
         var legendSpacing = 4;
         var legendData = [
-            {type: "improve", label: "Improve"},
-            {type: "to-know", label: "To Know"},
-            {type: "future", label: "Future"},
+            {type: "improve", label: "I need improve my knowledge"},
+            {type: "to-know", label: "I need learn"},
+            {type: "future", label: "It could be interesting to learn in the future"}
         ];
 
         var legendGroup = gnode
