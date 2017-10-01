@@ -130,26 +130,11 @@ function MindMap() {
             // .attr("r", 0)
             .attr("width", 0)
             .attr("height", 0)
-            .style("fill", function (node) {
-                switch (node.data.type){
-                    case "to-know":
-                        return "#e79494";
-                    case "future":
-                        return "#94e7e7";
-                    case "improve":
-                    default:
-                        return "white";
-                }
+            .style("fill", function(node) {
+                return getFillColorByType(node.data.type);
             })
             .style("stroke-width", function(node) {
-                switch (node.data.type){
-                    case "improve":
-                    case "to-know":
-                    case "future":
-                        return "rgba(20,20,20,0.2)";
-                    default:
-                        return 0;
-                }
+                return getStrokeWidthByType(node.data.type);
             })
             .style("stroke", "grey")
             .style("opacity", 0);
@@ -162,6 +147,9 @@ function MindMap() {
                 return node.data.name;
             })
             .style("fill-opacity", 0);
+
+        // render legend
+        renderLegend();
 
         var animationEnter = nodes.merge(nodeIds).transition().duration(600).attr("transform", function (node) {
             return "translate(" + node.pos[0] + "," + node.pos[1] + ")"
@@ -237,6 +225,94 @@ function MindMap() {
             }).remove(), descendants.forEach(function (descendant) {
             descendant.prevPos = [descendant.pos[0], descendant.pos[1]]
         });
+    }
+
+    function getFillColorByType(type) {
+        switch (type){
+            case "to-know":
+                return "#e79494";
+            case "future":
+                return "#94e7e7";
+            case "improve":
+            default:
+                return "white";
+        }
+    }
+
+    function getStrokeWidthByType(type) {
+        switch (type){
+            case "improve":
+            case "to-know":
+            case "future":
+                return "rgba(20,20,20,0.2)";
+            default:
+                return 0;
+        }
+    }
+
+    function renderLegend() {
+        var legendRectSize = 18;
+        var legendSpacing = 4;
+        var legendData = [
+            {type: "improve", label: "Improve"},
+            {type: "to-know", label: "To Know"},
+            {type: "future", label: "Future"},
+        ];
+
+        var legendGroup = gnode
+            .append('g')
+            .attr('class', 'legend-box')
+            .attr('transform', function (d, i) {
+                var dim = gmind.node().getBBox();
+                return 'translate(' + dim.x + ',' + dim.y + ')';
+            });
+
+        var legendBox = legendGroup
+            .append('rect')
+            .style('fill', '#fff')
+            .style('stroke', '#000')
+            .style('stroke-width', 1);
+
+        var legend = legendGroup.selectAll('.legend')
+            .data(legendData)
+            .enter()
+            .append('g')
+            .attr('class', 'legend')
+            .attr('transform', function (d, i) {
+                var height = legendRectSize + legendSpacing;
+                var offset = height * legendData.length / 2;
+                var horz = -2 * legendRectSize;
+                var vert = i * height - offset;
+
+                return 'translate(' + horz + ',' + vert + ')';
+            })
+            .style('stroke-width', 1)
+            .style("stroke", "grey");
+
+        legend.append('rect')
+            .attr('width', legendRectSize)
+            .attr('height', legendRectSize)
+            .style("stroke", "grey")
+            .style('fill', function (node) {
+                return getFillColorByType(node.type);
+            })
+            .style('stroke-width', function (node) {
+                return getStrokeWidthByType(node.type);
+            });
+
+        legend.append('text')
+            .attr('x', legendRectSize + legendSpacing)
+            .attr('y', legendRectSize - legendSpacing)
+            .text(function (node) {
+                return node.label;
+            });
+
+        // adjust legendBox to correct size
+        var legendBoxSize = legendGroup.node().getBBox();
+        legendBox.attr("x", (legendBoxSize.x - legendSpacing))
+            .attr("y", (legendBoxSize.y - legendSpacing))
+            .attr("height", (legendBoxSize.height + 2 * legendSpacing))
+            .attr("width", (legendBoxSize.width + 2 * legendSpacing));
     }
 
     function update() {
